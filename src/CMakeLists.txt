@@ -20,8 +20,8 @@ include_directories( ${cci_trinity_tunnel_SOURCE_DIR}
 # link
 link_directories( ${CMAKE_SOURCE_DIR}
                   /usr/lib
-                  ${CMAKE_SOURCE_DIR}//lib
-                 /usr/lib/i386-linux-gnu/lib
+                  ${CMAKE_SOURCE_DIR}/lib
+                 /usr/lib/x86_64-linux-gnu
                 )
  
  #binary

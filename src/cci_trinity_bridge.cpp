@@ -1,11 +1,11 @@
-// cci_trinity_tunnel.cpp   william k. johnson 2016
+// cci_trinity_tunnel.cpp   william k. johnson 2017
 // added support for c++11 .
 //                   command line handling ,
 //                   prcess signaling ,
 //                   interpocess communication
 //                   application binding,
-//                   swlite db
-// Copyright (c) 2016 chromatic universe
+//                   sqlite db
+// copyright (c) 2017 chromatic universe
 
 //
 // tcpproxy_server.cpp
