@@ -18,7 +18,6 @@
 #include <signal.h>
 //#include <cci_trinity_options.h>
 #include <cci_trinity_tunnel.h>
-// subprocess
 #include <subprocess.h>
 
 const std::string instance_filename( "instance_id" );

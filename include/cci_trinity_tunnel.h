@@ -1,12 +1,15 @@
 // cci_trinity_tunnel.h    copyright  william k. johnson 2016 chromatic universe
 //
-//added support for c++11 .
+//add support for c++11/14 .
 //                   command line handling ,
-//                   prcess signaling ,
+//                   process signaling ,
 //                   interpocess communication,
 //                   application binding,
-//                   sqlite db
-
+//                   seriallization
+//
+//
+//
+//
 //Copyright (c) 2007 Arash Partow (http://www.partow.net)
 // URL: http://www.partow.net/programming/tcpproxy/index.html
 //
@@ -73,7 +76,7 @@
 
 namespace cci_trinity
 {
-                       //scope
+            //scope
             namespace ip = boost::asio::ip;
 
 
