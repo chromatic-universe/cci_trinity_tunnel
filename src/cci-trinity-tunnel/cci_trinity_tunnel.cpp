@@ -54,7 +54,7 @@ void sigterm( int sig )
 //command line
 auto ccmd( make_unique<cmd_line> ( "cci-trinity-tunnel 2017" , ' ' , "0.94" ) );
 //quiet output
-auto quiet_switch( make_unique<cci_trinity::switch_arg> (  "q" ,
+auto quiet_switch( std::make_unique<cci_trinity::switch_arg> (  "q" ,
                                                                  "quiet" ,
                                                                  "non-verbose output" ,
                                                                  *ccmd.get() ,
@@ -62,7 +62,7 @@ auto quiet_switch( make_unique<cci_trinity::switch_arg> (  "q" ,
                                                               )
                 );
 //no retrieve metadata
-auto no_meta_switch( make_unique<cci_trinity::switch_arg> (  "n" ,
+auto no_meta_switch( std::make_unique<cci_trinity::switch_arg> (  "n" ,
                                                                  "no-metadata" ,
                                                                  "do not retrieve metadata" ,
                                                                  *ccmd.get() ,
@@ -70,21 +70,21 @@ auto no_meta_switch( make_unique<cci_trinity::switch_arg> (  "n" ,
                                                                 )
                 );
 //atomic
-auto atomic_switch( make_unique<cci_trinity::switch_arg> (  "a" ,
+auto atomic_switch( std::make_unique<cci_trinity::switch_arg> (  "a" ,
                                                                  "atomic" ,
                                                                  "standalone implementation" ,
                                                                  false
                                                               )
                   );
 //atomic
-auto drone_switch( make_unique<cci_trinity::switch_arg> (  "r" ,
+auto drone_switch( std::make_unique<cci_trinity::switch_arg> (  "r" ,
                                                                  "drone" ,
                                                                  "controlled drone" ,
                                                                  false
                                                               )
                   );
 //atomic
-auto daemon_switch( make_unique<cci_trinity::switch_arg> (  "d" ,
+auto daemon_switch( std::make_unique<cci_trinity::switch_arg> (  "d" ,
                                                                 "daemon" ,
                                                                  "run as unsupervised daaemon" ,
                                                                   *ccmd.get() ,
@@ -94,7 +94,7 @@ auto daemon_switch( make_unique<cci_trinity::switch_arg> (  "d" ,
 std::vector<std::string> allowed = { "http" , "tcp" , "icmp"  };
 tclap::ValuesConstraint<std::string> allowed_vals( allowed );
 //tunnel tuple
-auto tunnel_val( make_unique<cci_trinity::value_arg> ( "t" ,
+auto tunnel_val( std::make_unique<cci_trinity::value_arg> ( "t" ,
                                                               "tunnel" ,
                                                               "tunnel type" ,
                                                                true ,
@@ -104,7 +104,7 @@ auto tunnel_val( make_unique<cci_trinity::value_arg> ( "t" ,
 
                 );
 //proxy ip tuple
-auto proxy_tuple( make_unique<cci_trinity::value_arg> ( "p" ,
+auto proxy_tuple( std::make_unique<cci_trinity::value_arg> ( "p" ,
                                                               "proxy" ,
                                                               "proxy ip tuple" ,
                                                                true ,
@@ -114,7 +114,7 @@ auto proxy_tuple( make_unique<cci_trinity::value_arg> ( "p" ,
                                                             )
                 );
 //beard ip tuple
-auto destination_tuple( make_unique<cci_trinity::value_arg> ( "b" ,
+auto destination_tuple( std::make_unique<cci_trinity::value_arg> ( "b" ,
                                                                    "desination" ,
                                                                    "destination ip tuple" ,
                                                                    true ,
@@ -166,7 +166,7 @@ int main( int argc , char* argv[] )
                 std::ostringstream ostr;
                 ostr << "copyright chromatic universe 2017";
 
-                auto cli( make_unique<cci_cli_output>( &ostr ) );
+                auto cli( std::make_unique<cci_cli_output>( &ostr ) );
                	ccmd->setOutput( cli.get() );
                 // parse args array
                 ccmd->parse( argc, argv );
