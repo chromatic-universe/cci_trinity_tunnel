@@ -247,6 +247,8 @@ trinity_meta_dictionary retr_mongo_metadata( bool stream_out  , std::ostream& os
 
                 if ( stream_out )  { stream_metadata( j );  }
 
+
+
           }
           catch( std::exception& e )
           {
