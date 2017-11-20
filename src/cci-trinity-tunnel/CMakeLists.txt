@@ -32,8 +32,7 @@ target_link_libraries(cci-trinity-tunnel -lstdc++
 				         -lpthread 
                                          -lboost_thread
                                          -lboost_system 
-					 cci_trinity_tunnel_core
-    					 ${CMAKE_SOURCE_DIR}/lib/libsqlite3.a) 
+					 cci_trinity_tunnel_core)
 
 
 #install
