@@ -39,7 +39,6 @@ target_link_libraries(cci-trinity-tunnel -lstdc++
 install_targets(/bin  cci-trinity-tunnel)
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/py DESTINATION . )
 install(FILES ${CMAKE_SOURCE_DIR}/instance_id DESTINATION bin)
-install(FILES ${CMAKE_SOURCE_DIR}/lib/libsqlite3.a DESTINATION lib)
 
 
 
