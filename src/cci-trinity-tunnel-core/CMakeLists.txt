@@ -14,6 +14,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "-Wall -O3 -Qunused-arguments -DRELEASE -std=c++1z")
 # includes
 include_directories( ${cci_trinity_tunnel_SOURCE_DIR}
                     /usr/include
+		     $ENV{DEV}/include
                     ${CMAKE_SOURCE_DIR}/include
                    ) 
 

@@ -14,12 +14,14 @@ set(CMAKE_CXX_FLAGS_RELEASE "-Wall -O3 -Qunused-arguments -DRELEASE -std=c++14")
 # includes
 include_directories( ${cci_trinity_tunnel_SOURCE_DIR}
                     /usr/include
+		     $ENV{DEV}/include 
                     ${CMAKE_SOURCE_DIR}/include
                    ) 
 
 # link
 link_directories( ${CMAKE_SOURCE_DIR}
                   /usr/lib
+                   $ENV{DEV}/lib
                   ${CMAKE_SOURCE_DIR}/lib
                  /usr/lib/x86_64-linux-gnu
                 )
