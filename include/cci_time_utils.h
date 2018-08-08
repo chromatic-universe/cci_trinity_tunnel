@@ -1,5 +1,8 @@
 //cci_time_utils.h    william k. jonson 2016
 //c++ std
+#pragma once
+
+
 #include <chrono>
 #include <iostream>
 #include <sstream>
@@ -13,8 +16,6 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-
-#pragma once
 
 
 
@@ -64,16 +65,16 @@ namespace cpp_real_stream
         {
             //we make some platform assumptions here about time structures and calcs,
             //but acceptable begin this class is not for scientific computing
+            friend std::ostream& operator<< ( std::ostream& ostr , time_utils& tu )
+            {
+                    ostr << tu.ret_stamp();
+                    return ostr;//<< tu.time_stamp();
+            }
+
 
             public :
 
-                friend std::ostream& operator<< ( std::ostream& ostr , time_utils& tu )
-                {
-                    ostr << tu.ret_stamp();
-                    return ostr;//<< tu.time_stamp();
-                }
-
-                //ctor
+                               //ctor
                 explicit time_utils( stamp_color sc = stamp_color::none ) : m_time( new std::time_t ) ,
                                                                             m_color { sc }
 
@@ -133,15 +134,24 @@ namespace cpp_real_stream
                 void color( const stamp_color sc ) { m_color = sc; }
 
                 //services
-                virtual std::string present() const noexcept
+                virtual std::string present()
                 {
-                    std::time_t result = time( nullptr );
-                    std::string sz = std::ctime( &result );
-                    sz.resize( sz.size() - 1 );
+                    //std::time_t result = time( nullptr );time c function thread safe
+                    //std::string sz = std::ctime( &result );
+                    //sz.resize( sz.size() - 1 );
 
+                    time_t rawtime;
+                    struct tm * timeinfo;
+
+                    time ( &rawtime );
+                    timeinfo = localtime ( &rawtime );
+                    std::string sz { asctime( timeinfo ) };
+                    sz.resize( sz.length() - 1 );
 
                     return sz;
+
                 }
+
 
                 void time_stamp( std::ostream& ostr = std::cerr )
                 {
@@ -153,13 +163,6 @@ namespace cpp_real_stream
                          << space
                          << colon
                          << space;
-                }
-
-                void null_stamp( std::ostream& ostr = std::cerr )
-                {
-                    //non-portable
-                    ostr << colors[m_color]
-                         << "";
                 }
 
                 void stamp( const std::string& st , std::ostream& ostr = std::cerr )
@@ -185,9 +188,19 @@ namespace cpp_real_stream
                     return ostr.str();
                 }
 
+		void null_stamp( std::ostream& ostr = std::cerr )
+                {
+                    //non-portable
+                    ostr << colors[m_color]
+                         << "";
+                }
+
+
+
                 void time_stamp( std::string& str )
                 {
-                    std::ostringstream ostr;
+                    std::ostringstream ostr;//events
+
                     time_stamp( ostr );
 
                     str = ostr.str();
