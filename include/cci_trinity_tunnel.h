@@ -69,7 +69,7 @@
 // sqlite
 //#include <SQLiteCpp/SQLiteCpp.h>
 // json
-#include <json.h>
+#include <json.hpp>
 // cci
 #include <cci_trinity_db.h>
 #include <cci_time_utils.h>

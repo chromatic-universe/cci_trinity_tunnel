@@ -146,7 +146,8 @@ namespace cpp_real_stream
                     time ( &rawtime );
                     timeinfo = localtime ( &rawtime );
                     std::string sz { asctime( timeinfo ) };
-                    sz.resize( sz.length() - 1 );
+                    if ( sz.length() > 0 ) { sz.resize( sz.length() - 1 ); }
+
 
                     return sz;
 

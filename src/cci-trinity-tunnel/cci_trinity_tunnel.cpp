@@ -18,12 +18,10 @@
 #include <signal.h>
 //#include <cci_trinity_options.h>
 #include <cci_trinity_tunnel.h>
-#include <subprocess.h>
 
 const std::string instance_filename( "instance_id" );
 
 using namespace cci_trinity;
-using namespace subprocess;
 using json = nlohmann::json;
 using namespace cpp_real_stream;
 
@@ -34,6 +32,27 @@ using namespace cpp_real_stream;
 
 namespace
 {
+
+            std::vector<std::string>
+            split(const std::string& str, const std::string& delims=" \t")
+            {
+                std::vector<std::string> res;
+                size_t init = 0;
+
+                while (true) {
+                  auto pos = str.find_first_of(delims, init);
+                  if (pos == std::string::npos) {
+                res.emplace_back(str.substr(init, str.length()));
+                break;
+                  }
+                  res.emplace_back(str.substr(init, pos - init));
+                  pos++;
+                  init = pos;
+                }
+
+                return res;
+            }
+
 
             //signals
             void sigterm( int sig )
@@ -185,9 +204,9 @@ namespace
                             //deserialize
                             json j;
 
-                            std::istringstream istr( check_output( {"python3", "../py/trinity_cpp.py"} ).buf.data() );
-                            err_str = istr.str();
-                            istr >> j;
+                            //std::istringstream istr( check_output( {"python3", "../py/trinity_cpp.py"} ).buf.data() );
+                            //err_str = istr.str();
+                            //istr >> j;
 
                     if ( stream_out )  { stream_metadata( j );  }
 
@@ -260,8 +279,8 @@ namespace
 
                try
                {
-                      v_host = util::split( host_tuple , colon );
-                      v_dest = util::split( dest_tuple , colon );
+                      v_host = split( host_tuple , colon );
+                      v_dest = split( dest_tuple , colon );
 
                       cci_trinity::trinity_acceptor acceptor( ios ,
                                                               v_host[0],
