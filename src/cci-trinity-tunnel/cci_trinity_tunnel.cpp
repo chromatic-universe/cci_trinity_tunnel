@@ -98,12 +98,12 @@ namespace
                                                                           )
                               );
             //atomic
-            auto drone_switch( std::make_unique<cci_trinity::switch_arg> (  "r" ,
-                                                                             "drone" ,
-                                                                             "controlled drone" ,
-                                                                             false
-                                                                          )
-                              );
+            //auto drone_switch( std::make_unique<cci_trinity::switch_arg> (  "r" ,
+            //                                                                 "drone" ,
+            //                                                                 "controlled drone" ,
+            //                                                                 false
+            //                                                              )
+            //                  );
             //atomic
             auto daemon_switch( std::make_unique<cci_trinity::switch_arg> (  "d" ,
                                                                             "daemon" ,
@@ -136,7 +136,7 @@ namespace
                             );
             //beard ip tuple
             auto destination_tuple( std::make_unique<cci_trinity::value_arg> ( "b" ,
-                                                                               "desination" ,
+                                                                               "destination" ,
                                                                                "destination ip tuple" ,
                                                                                true ,
                                                                                "foo" ,
@@ -154,11 +154,15 @@ namespace
             void non_cli_boiler();
             //--------------------------------------------------------------------------------------------------------
             void dispatch_tunnel( const std::string& tunnel_type  ,
+
                                   const std::string& host_tuple ,
                                   const std::string& dest_tuple );
             //--------------------------------------------------------------------------------------------------------
             void dispatch_direct_tcp( const std::string& host_tuple ,
                                       const std::string& dest_tuple );
+            //-------------------------------------------------------------------------------------------------------
+            bool is_ip_addr( const std::string& addr );
+
 
 
 
@@ -281,6 +285,18 @@ namespace
                {
                       v_host = split( host_tuple , colon );
                       v_dest = split( dest_tuple , colon );
+                      //validate
+                      if( ( !is_ip_addr( v_host[0] ) ) || ( !is_ip_addr( v_dest[0] ) ) )
+                      {
+                              tu->color( stamp_color::red );
+                              tu->null_stamp();
+                              std::cerr << "[exception] ";
+                              tu->time_stamp();
+                              std::cerr << "....invalid ip address...dns hostnames are not accepted.."
+                                        << "\n";
+                              tu->clear_color();
+                              exit( 1 );
+                      }
 
                       cci_trinity::trinity_acceptor acceptor( ios ,
                                                               v_host[0],
@@ -314,7 +330,16 @@ namespace
 
     }
 
+    //----------------------------------------------------------------------------------------
+    bool is_ip_addr( const std::string& addr )
+    {
+                boost::system::error_code ec;
+                boost::asio::ip::address::from_string( addr , ec );
+
+                return ec ? false : true;
     }
+
+}
 
 
 
@@ -333,7 +358,7 @@ namespace
                     // mutually exclusive switches
                     std::vector<tclap::Arg*>  xorlist;
                     xorlist.push_back( atomic_switch.get() );
-                    xorlist.push_back( drone_switch.get() );
+                    //xorlist.push_back( drone_switch.get() );
                     // ad xor , cmd object also contains value arguments from static constuction
                     ccmd->xorAdd( xorlist );
                     ccmd->add( tunnel_val.get() );
@@ -358,6 +383,19 @@ namespace
                               << "\n";
 
               }
+              catch ( const std::exception& err )
+              {
+                      std::cerr << "error: "
+                                <<  err.what()
+                                << "\n";
+
+              }
+              catch ( ... )
+              {
+                      std::cerr << "untypes exception: \n";
+
+              }
+
 
 
               dispatch_tunnel( tunnel_val->getValue() ,
