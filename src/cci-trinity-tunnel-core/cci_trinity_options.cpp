@@ -1,4 +1,4 @@
-// cci_trinity_options.cpp   william k. johnson 2016
+// cci_trinity_options.cpp   chromatic universe 2016-2020     william k. johnson
 
 #include <cci_trinity_options.h>
 #include <cci_time_utils.h>

@@ -1,4 +1,4 @@
-// cci_trinity_acceptor.cpp   william k. johnson 2016
+// cci_trinity_acceptor.cpp   chromatic universe  2016-2020          william k. johnson
 //
 // added support for c++11 .
 //                   command line handling ,

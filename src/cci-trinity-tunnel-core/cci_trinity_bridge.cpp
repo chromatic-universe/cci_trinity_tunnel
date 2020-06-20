@@ -1,4 +1,4 @@
-// cci_trinity_tunnel.cpp   william k. johnson 2017
+// cci_trinity_tunnel.cpp   chromatic universe  2016-2-2020    william k. johnson
 // added support for c++11 .
 //                   command line handling ,
 //                   prcess signaling ,
