@@ -1,11 +1,12 @@
-// cci_trinity_tunnel.cpp   william k. johnson 2016
+// cci_trinity_tunnel.cpp   chromatic univere  william k. johnson 2016-2-2-
+//
 // added support for c++11/14 .
 //                   command line handling ,
 //                   prcess signaling ,
 //                   interpocess communication
 //                   application binding,
 //                   sqlite db
-// Copyright (c) 2016 chromatic universe
+// Copyright (c) 2020 chromatic universe
 
 //
 // tcpproxy_server.cpp
@@ -73,7 +74,7 @@ namespace
             }
 
             //command line
-            auto ccmd( make_unique<cmd_line> ( "cci-trinity-tunnel 2017" , ' ' , "0.94" ) );
+            auto ccmd( make_unique<cmd_line> ( "cci-trinity-tunnel 2020" , ' ' , "0.94" ) );
             //quiet output
             auto quiet_switch( std::make_unique<cci_trinity::switch_arg> (  "q" ,
                                                                              "quiet" ,
@@ -91,12 +92,12 @@ namespace
                                                                             )
                             );
             //atomic
-            auto atomic_switch( std::make_unique<cci_trinity::switch_arg> (  "a" ,
-                                                                             "atomic" ,
-                                                                             "standalone implementation" ,
-                                                                             false
-                                                                          )
-                              );
+            //auto atomic_switch( std::make_unique<cci_trinity::switch_arg> (  "a" ,
+            ///                                                                 "atomic" ,
+            ///                                                                 "standalone implementation" ,
+            //                                                                 false
+            //                                                              )
+            //                  );
             //atomic
             //auto drone_switch( std::make_unique<cci_trinity::switch_arg> (  "r" ,
             //                                                                 "drone" ,
@@ -357,7 +358,7 @@ namespace
               {
                     // mutually exclusive switches
                     std::vector<tclap::Arg*>  xorlist;
-                    xorlist.push_back( atomic_switch.get() );
+                    //xorlist.push_back( atomic_switch.get() );
                     //xorlist.push_back( drone_switch.get() );
                     // ad xor , cmd object also contains value arguments from static constuction
                     ccmd->xorAdd( xorlist );
@@ -365,7 +366,7 @@ namespace
 
                     // output
                     std::ostringstream ostr;
-                    ostr << "copyright chromatic universe 2017";
+                    ostr << "copyright chromatic universe 2020";
 
                     auto cli( std::make_unique<cci_cli_output>( &ostr ) );
                     ccmd->setOutput( cli.get() );
