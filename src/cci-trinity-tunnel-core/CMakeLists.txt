@@ -16,7 +16,7 @@ include_directories( ${cci_trinity_tunnel_SOURCE_DIR}
                     /usr/include
 		            $ENV{DEV}/include
                     $ENV{SOURCE_ROOT}/cci_develop/cci-cpp-stream/include
-                    ${CMAKE_SOURCE_DIR}/include
+                    $ENV{SOURCE_ROOT}/cci_trinity_tunnel/include
                    ) 
 
 # link
