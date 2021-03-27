@@ -1,4 +1,4 @@
-// cci_trinity_tunnel.h    copyright  william k. johnson 2016 chromatic universe
+// cci_trinity_tunnel.h    copyright  william k. johnson 2016-2021 chromatic universe
 //
 //add support for c++11/14 .
 //                   command line handling ,
