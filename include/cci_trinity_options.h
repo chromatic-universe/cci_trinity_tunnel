@@ -1,4 +1,4 @@
-// cci_trinity_options.h    william k. johnson copyrihgt 2016 chromatic universe
+// cci_trinity_options.h    william k. johnson copyrihgt 2016-2021 chromatic universe
 #pragma once
 
 #include <iostream>
