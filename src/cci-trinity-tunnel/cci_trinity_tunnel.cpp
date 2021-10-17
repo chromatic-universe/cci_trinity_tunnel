@@ -1,4 +1,4 @@
-// cci_trinity_tunnel.cpp   chromatic univere  william k. johnson 2016-2-2-
+// cci_trinity_tunnel.cpp   chromatic univere  william k. johnson 2016-2021
 //
 // added support for c++11/14 .
 //                   command line handling ,
